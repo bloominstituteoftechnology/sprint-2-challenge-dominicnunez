@@ -85,12 +85,6 @@
       //    * If the profile is active but it has a `reason` prop, return the string "confirm status manually"
       //    * If the profile is **missing** an `active` prop, return the string "impossible to ascertain status"
       // 🌟 HINT: to confirm the existence of a prop, check that its value is not undefined
-      //[[{}], 'impossible to ascertain status'],
-      //[[{ active: true, reason: '' }], 'confirm status manually'],
-      //[[{ active: true, reason: 'because' }], 'confirm status manually'],
-      //[[{ active: false }], 'confirm status manually'],
-      //[[{ active: true }, 'because'], { active: false, reason: 'because' }],
-      //[[{ active: false, reason: 'because' }], { active: true }],
       let activeStatus = profile.active;
       let reason = profile.reason;
       let edgeCaseOne = activeStatus && reason;
@@ -109,14 +103,14 @@
     }
 
     // 👉 CHALLENGE 2
-    function mineSweeper() {
+    function mineSweeper(grid, x, y) {
       // 🧠 mineSweeper takes a grid as its first argument, and coordinates x and y as the second and third args
       //  The grid is an array of arrays in the following format: [["🟥","🟦","🟥"],["🟦","🟥","🟥"],["🟥","🟦","🟦"]]
       //  Each subarray is a row of the grid, the first subarray being the top row:
-      //  [
-      //    ["🟥", "🟦", "🟥"],
-      //    ["🟦", "🟥", "🟥"],
-      //    ["🟥", "🟦", "🟦"]
+      //  [     1     2      3
+      //    1["🟥", "🟦", "🟥"],
+      //    2["🟦", "🟥", "🟥"],
+      //    3["🟥", "🟦", "🟦"]
       //  ]
       // The subarrays can contain any mix of red and blue squares
       // The coordinates x and y are numbers: either 1 or 2 or 3
@@ -128,6 +122,22 @@
       //    * If the player lands on blue, return the string "🟦 🥳"
       // 🧠 Edge cases:
       //    * If the x or y coordinates are under 1 or over 3, return the string "invalid coordinates"
+      function validCoordinate(number) {
+        if (number > 0 && number < 4) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      let coordinates = [x, y];
+
+      for (i in coordinates) {
+        if (!validCoordinate(i)) {
+          return "invalid coordinates"
+        }
+      }
+
     }
 
     // 👉 CHALLENGE 3
