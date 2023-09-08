@@ -168,7 +168,7 @@
     }
 
     // 👉 CHALLENGE 4
-    function scrub() {
+    function scrub(text, forbidden) {
       // 🧠 scrub takes a string "text" as its first argument, and an array of forbidden words "forbidden" as its second
       // Any word in the text included in the array of forbidden words is replaced with a word of equal length but made of lowcase "x"
       // The scrubbed text is then returned from the function, as seen in the examples below
@@ -180,6 +180,19 @@
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
       //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
+      let strAsArr = text.split(" "); // turn the string into an array of strings
+
+      for (word in strAsArr) { // iterate through the string as an array
+        if (forbidden.includes(strAsArr[word])) { // if any of the words are the forbidden ones
+          let xWord = ""; // reset xWord when new bad word is found
+          for (char in strAsArr[word]) { // interate through the characters of the forbidden
+            xWord += "x"; // add an "x" to the xWord string for every letter in the word
+          }
+          let index = strAsArr.indexOf(strAsArr[word]); // store the index of the word in the phrase to substitute with the xWord
+          strAsArr.splice(index, 1, xWord); // remove the bad word and replace it with the xWord
+        }
+      }
+      return strAsArr.join(" "); // turn the array of strings back into single string after scrubbing is complete
     }
 
     // 👉 CHALLENGE 5
