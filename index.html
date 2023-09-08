@@ -124,7 +124,7 @@
       //    * If the x or y coordinates are under 1 or over 3, return the string "invalid coordinates"
       let xyArr = [x, y];
 
-      function validCoordinates(xy) {
+      function validateCoordinates(xy) {
         let count = 0;
         for (i in xy) {
           if (xy[i] > 0 && xy[i] < 4) {
@@ -134,7 +134,7 @@
         return count == xy.length;
       }
 
-      if (!validCoordinates(xyArr)) {
+      if (!validateCoordinates(xyArr)) {
         return "invalid coordinates";
       } else if (grid[y-1][x-1] == "🟥") {
         return "🟥 💀";
