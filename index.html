@@ -180,13 +180,13 @@
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
       //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
-      let strAsArr = text.split(" "); // turn the string into an array of strings
+      let strAsArr = text.split(" "); // turn the string into an array of strings by cutting each word at every space
 
       for (word in strAsArr) { // iterate through the string as an array
         if (forbidden.includes(strAsArr[word])) { // if any of the words are the forbidden ones
           let xWord = ""; // reset xWord when new bad word is found
-          for (char in strAsArr[word]) { // interate through the characters of the forbidden
-            xWord += "x"; // add an "x" to the xWord string for every letter in the word
+          for (char in strAsArr[word]) { // interate through the characters of the forbidden word
+            xWord += "x"; // add an "x" to the xWord string for every letter in the bad word
           }
           let index = strAsArr.indexOf(strAsArr[word]); // store the index of the word in the phrase to substitute with the xWord
           strAsArr.splice(index, 1, xWord); // remove the bad word and replace it with the xWord
@@ -196,7 +196,7 @@
     }
 
     // 👉 CHALLENGE 5
-    function normalizePhoneNumber() {
+    function normalizePhoneNumber(tenDigits) {
       // 🧠 normalizePhoneNumber takes a string as its only argument, representing a ten-digit number
       // The function returns a string formatted as seen below
       // 🧠 Examples of usage:
@@ -208,6 +208,23 @@
       // 🌟 HINT: instead of looping over the number's digits, loop backwards over a template "(XXX) XXX-XXXX"
       // 🌟 HINT: at each iteration, if the current character is an "X", replace it with the result of popping a digit from the number
       // 🌟 HINT: if you'd rather loop forwards, use `shift` instead of `pop`
+      let template = "(XXX) XXX-XXXX";
+      let templateArray = template.split("");
+      let indexForNumber = 0
+
+      if (tenDigits.length != 10) {
+        return "type a 10-digit number"
+      } else if (!(Number(tenDigits))) {
+        return "invalid phone number"
+      }
+      for (character in templateArray) {
+        if (templateArray[character] == "X") {
+          let index = templateArray.indexOf(templateArray[character]);
+          templateArray.splice(index, 1, tenDigits[indexForNumber]);
+          indexForNumber += 1;
+        }
+      }
+      return(templateArray.join(""));
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
